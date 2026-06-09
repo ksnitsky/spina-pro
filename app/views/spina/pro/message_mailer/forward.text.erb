@@ -1,0 +1,14 @@
+<%=t "spina.pro.message_mailer.forward.preheader", type: @message.model_name.human, name: @message.to_name %>
+
+  <%= @message.class.human_attribute_name(:email) %>: <%= @message.email %>
+<% @message.message_attributes.each do |attribute| %>
+  <% next if @message.send(attribute).blank? %>
+  <%= @message.class.human_attribute_name(attribute) %>: <%= @message.send(attribute) %>
+<% end %>
+
+<%=t "spina.pro.message_mailer.forward.new_messages", count: Spina::Pro::Message.unread.count %>
+<%= spina.admin_pro_inbox_url(@inbox) %>
+
+---
+<%=t "spina.pro.message_mailer.forward.forward_settings" %>
+<%= spina.edit_admin_pro_inbox_url(@inbox) %>

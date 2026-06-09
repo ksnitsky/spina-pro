@@ -1,0 +1,31 @@
+<%= turbo_frame_tag dom_id(@rewrite_rule, :form) do %>
+  <%= form_with model: [:admin, :pro, @rewrite_rule], data: {turbo_frame: "_top"} do |f| %>
+    <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+      <div class="sm:flex sm:items-start">
+        <div class="w-full">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            <%=t 'spina.pro.rewrite_rules.add_rewrite_rule' %>
+          </h3>
+    
+          <div class="mt-3">
+            <%= render Spina::Forms::TextFieldComponent.new(f, :old_path, autofocus: f.object.old_path.blank?) %>
+          </div>
+          
+          <div class="mt-3">
+            <%= render Spina::Forms::TextFieldComponent.new(f, :new_path, autofocus: f.object.old_path.present?) %>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    <div class="px-4 pb-5 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+      <button type="submit" class="btn btn-primary w-full sm:w-auto sm:ml-2">
+        <%=t 'spina.pro.rewrite_rules.save_rewrite_rule' %>
+        <%= heroicon("arrow-right", style: :solid, class: 'w-4 h-4 ml-1 -mr-1') %>
+      </button>
+      <button type="button" class="btn btn-default w-full sm:w-auto mt-2 sm:mt-0" data-action="modal#close">
+        <%=t 'spina.ui.cancel' %>
+      </button>
+    </div>
+  <% end %>
+<% end %>

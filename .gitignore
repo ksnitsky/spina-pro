@@ -1,0 +1,21 @@
+/.bundle/
+/doc/
+/log/*.log
+/pkg/
+/tmp/
+/spec/dummy/db/*.sqlite3
+/spec/dummy/db/*.sqlite3-*
+/spec/dummy/log/*.log
+/spec/dummy/storage/
+/spec/dummy/tmp/
+/spec/dummy/app/assets/config/
+.byebug_history
+.DS_Store
+*.gem
+DEPLOYING.md
+
+# Never commit app secrets
+/spec/dummy/config/master.key
+/spec/dummy/config/credentials.yml.enc
+/spec/dummy/config/secrets.yml
+/spec/dummy/app/assets/builds/spina/tailwind.css

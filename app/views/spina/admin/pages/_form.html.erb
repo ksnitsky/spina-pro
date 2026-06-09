@@ -1,0 +1,52 @@
+<div data-controller="tabs" data-tabs-active="cursor-default text-gray-900 bg-spina-dark bg-opacity-10" data-tabs-inactive="cursor-pointer bg-transparent text-gray-400 border-transparent">
+  <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+    <% header.with_after_breadcrumbs do %>
+      <%= render Spina::Pro::Pages::PageRevisionComponent.new(@page, @page_revision) %>
+      
+      <%= link_to @page.materialized_path(locale: @locale), class: 'px-3 py-2 flex items-center text-gray-400 hover:text-gray-700', target: :blank, data: {turbo: false} do %>
+        <%= heroicon("external-link", style: :mini, class: "w-4 h-4") %>
+      <% end %>
+    <% end %>
+    <% header.with_actions do %>
+      <% if @page_revision && !@page_revision.draft? %>
+        <div class="flex items-center space-x-3">
+          <div class="text-gray-400 text-xs">
+            <%=t "spina.pro.page_revisions.viewing_old_revision" %>
+          </div>
+          <button type="submit" form="<%= dom_id(@page) %>" class="btn bg-green-600 border-green-700 text-white hover:bg-green-700 w-1/2 md:w-auto" data-controller="button hotkeys" data-hotkeys="command+s, ctrl+s" data-hotkeys-target="button" data-action="button#loading" data-loading-message="Saving...">
+            <%= heroicon('cursor-arrow-rays', style: :mini, class: 'w-5 h-5 mr-1 -mt-0.5 -ml-1') %>
+            <%=t "spina.pro.page_revisions.publish_this_version" %>
+          </button>
+        </div>
+      <% else %>
+        <%= render Spina::Pages::ActionsComponent.new(page: @page, locale: @locale) %>
+      <% end %>
+    <% end %>
+    <% header.with_navigation do %>
+      <nav class="-mb-3 mt-4">
+        <ul class="inline-flex w-auto rounded-md bg-white">
+          <% if @page_revision %>
+            <%= render partial: "button_page_content" %>
+          <% else %>
+            <% @tabs.each do |tab_name| %>
+              <%= render partial: "button_#{tab_name}" %>
+            <% end %>
+          <% end %>
+        </ul>
+      </nav>
+    <% end %>
+  <% end %>
+  <div class="p-4 md:p-8">
+    <%= form_with model: @page, url: spina.admin_page_path(@page), id: dom_id(@page) do |f| %>
+      <%= hidden_field_tag :revision, params[:revision] %>
+      <%= hidden_field_tag :locale, @locale %>
+      <% Mobility.with_locale(@locale) do %>
+        <% @tabs.each_with_index do |tab_name, idx| %>
+          <div data-tabs-target="pane" id="<%= tab_name %>" <%= 'hidden' unless idx.zero? %>>
+            <%= render partial: "form_#{tab_name}", locals: {f: f} %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

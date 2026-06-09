@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      signup:
+        one: signup
+        other: signups
+    attributes:
+      signup:
+        first_name: First name
+        last_name: Last name
+        body: Body

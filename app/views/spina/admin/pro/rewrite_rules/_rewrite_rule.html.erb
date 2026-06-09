@@ -1,0 +1,17 @@
+<%= turbo_frame_tag dom_id(rewrite_rule) do %>
+
+  <div class="flex items-center h-12 hover:bg-white border-b border-gray-200 px-8 text-sm">
+    <div class="flex-1 truncate"><%= rewrite_rule.old_path %></div>
+    <div class="w-24 justify-center flex items-center">
+      <div class="bg-gray-500 text-white font-bold text-xs px-2 py-0.5 rounded-md flex items-center">
+        301
+        <%= heroicon('arrow-right', class: 'h-3 w-3 ml-1') %>
+      </div>
+    </div>
+    <div class="flex-1 truncate"><%= rewrite_rule.new_path %></div>
+    <%= button_to spina.admin_pro_rewrite_rule_path(rewrite_rule), method: :delete, class: "block py-3 px-4 ml-2 text-gray-500 hover:text-gray-900", form: {data: {controller: "confirm", confirm_message: t('spina.pro.rewrite_rules.delete_confirmation_html')}} do %>
+      <%= heroicon('trash', class: "w-5 h-5") %>
+    <% end %>
+  </div>
+
+<% end %>

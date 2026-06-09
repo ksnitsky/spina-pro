@@ -1,0 +1,6 @@
+<div class="mt-6">
+  <label class="block text-sm leading-5 font-medium text-gray-700"><%= f.object.title %></label>
+  <div class="mt-1">
+    <%= f.datetime_select :value, prompt: true, with_css_classes: {year: "form-select", month: "form-select", day: "form-select", hour: "form-select", minute: "form-select"} %>
+  </div>
+</div>

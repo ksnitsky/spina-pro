@@ -1,0 +1,34 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.with_navigation do %>
+    <nav class="-mb-1 md:-mb-3 mt-4">
+      <ul class="inline-flex w-auto rounded-md bg-white">
+        <%= render Spina::UserInterface::TabLinkComponent.new(spina.admin_pro_message_archive_path, active: controller_name == 'message_archive') do %>
+          <%= heroicon('archive-box', style: :solid, class: 'h-4 w-4 mr-1 -ml-1 opacity-75') %>
+          <%=t "spina.pro.messages.archived_messages" %>
+        <% end %>
+        
+        <%= render Spina::UserInterface::TabLinkComponent.new(spina.admin_pro_message_spam_path, active: controller_name == 'message_spam') do %>
+          <%= heroicon('archive-box-x-mark', style: :solid, class: 'h-4 w-4 mr-1 opacity-75') %>
+          <%=t "spina.pro.messages.spam" %>
+        <% end %>
+      </ul>
+    </nav>
+  <% end %>
+<% end %>
+
+<div class="p-8">
+  <div class="mb-10 shadow-sm border border-gray-200 bg-white rounded-lg" data-controller="infinite-scroll">
+    
+    <%= turbo_frame_tag "spam-messages" do %>
+      <%= turbo_frame_tag "spam-messages-#{@messages.current_page}" do %>
+        <%= render partial: 'spina/admin/pro/messages/message', collection: @messages %>
+        
+        <% if @messages.next_page %>
+          <%= turbo_frame_tag "spam-messages-#{@messages.next_page}", data: {action: "turbo:frame-load->infinite-scroll#load"} do %>
+            <%= link_to t('spina.ui.load_more'), path_to_next_page(@messages), class: 'block', data: {infinite_scroll_target: "button"} %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

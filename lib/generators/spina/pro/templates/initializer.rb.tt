@@ -1,0 +1,6 @@
+Spina::Pro.configure do |config|
+  # Disable hints
+  # Spina Pro's features are explained using hints in the admin UI.
+  # Once you're familiar with Spina Pro, you can disable those hints.
+  # config.disable_hints = true
+end

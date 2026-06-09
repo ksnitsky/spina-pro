@@ -1,0 +1,25 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.with_navigation do %>
+    <%= render 'spina/admin/pro/shared/redirects_navigation' %>
+  <% end %>
+<% end %>
+
+<%= render Spina::Pro::UserInterface::HintComponent.new(t("spina.pro.not_found_errors.explanation")) %>
+
+<%= form_with url: spina.admin_pro_not_found_errors_path, method: :get, data: {turbo_frame: :not_found_errors, controller: "form"} do |f| %>
+  <div class="m-8">
+    <%= f.text_field :search, class: 'form-input w-full', placeholder: t("spina.pro.rewrite_rules.search"), data: {action: "form#requestSubmit"} %>
+  </div>
+<% end %>
+
+<div class="border-t border-gray-200">
+  <%= turbo_frame_tag :not_found_errors do %>
+    <%= render partial: "not_found_error", collection: @not_found_errors %>
+  <% end %>
+</div>
+
+<% if Spina::Pro::NotFoundError.ignored.any? %>
+  <%= turbo_frame_tag :ignored_not_found_errors do %>
+    <%= link_to t("spina.pro.not_found_errors.show_ignored"), spina.ignored_admin_pro_not_found_errors_path, class: 'text-center text-gray-500 block text-xs py-5' %>
+  <% end %>
+<% end %>

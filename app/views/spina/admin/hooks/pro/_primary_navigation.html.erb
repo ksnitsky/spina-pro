@@ -1,0 +1,40 @@
+<% unless Spina::Pro.config.hide_inboxes %>
+  <%= render Spina::MainNavigation::SubNavComponent.new(:inboxes) do |nav| %>
+    <% nav.with_icon do %>
+      <%= heroicon('inbox', style: :solid, class: 'w-8 h-8 text-white md:mr-3 transform scale-95') %>
+      
+      <%= turbo_stream_from Spina::Current.account, :messages_unread %>
+      <div id="messages_unread_count">
+        <%= render partial: "spina/admin/pro/inboxes/unread_count" %>
+      </div>
+      
+      <div class="text-white font-semibold hidden md:block transform -translate-x-2 ease-in-out duration-300 absolute md:relative opacity-0 transition-all" data-navigation-target="label">
+        Inbox
+      </div>
+    <% end %>
+    
+    <% nav.with_links do %>
+      <% inboxes.each do |inbox| %>
+        
+        <li <%= "data-navigation-active" if @inbox == inbox %>>
+          <%= link_to spina.admin_pro_inbox_path(inbox), class: "flex items-center p-3 leading-none text-white hover:opacity-100 transition-opacity font-semibold #{'opacity-50' if @inbox != inbox}" do %>
+            <%= inbox.label %>
+            
+            <div id="<%= dom_id(inbox, :unread_indicator) %>">
+              <%= render "spina/admin/pro/inboxes/unread_indicator", inbox: inbox %>
+            </div>
+          <% end %>
+        </li>
+        
+      <% end %>
+      
+      <%= render Spina::MainNavigation::LinkComponent.new(t("spina.pro.messages.message_archive"), spina.admin_pro_message_archive_path, active: controller_name.in?(["message_archive", "message_spam"])) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<li class="fixed bottom-20" data-controller="hotkeys" data-hotkeys="cmd+k, ctrl+k">
+  <%= button_to spina.admin_pro_search_path, class: "flex w-full items-center p-3 relative opacity-50 hover:opacity-100 transition-opacity", data: {turbo_frame: "modal", hotkeys_target: "button"} do %>
+    <%= heroicon('magnifying-glass', style: :mini, class: 'w-8 h-8 text-white md:mr-3') %>
+  <% end %>
+</li>

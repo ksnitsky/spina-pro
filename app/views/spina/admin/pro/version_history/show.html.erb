@@ -1,0 +1,34 @@
+<turbo-frame id="version_history">
+  <turbo-frame id="version_history_<%= @version_history.current_page %>">
+    <% @version_history.each.with_index do |page_revision, index| %>
+      <% link = index.zero? && @version_history.current_page == 1 && !@page.draft ? "live" : page_revision.id %>
+      <%= link_to "?revision=#{link}", class: "block text-sm px-1 pb-1 group", data: {turbo_frame: "_top"} do %>
+        <div class="p-2 px-3 rounded-md flex items-center justify-between <%= page_revision.id.to_s == params[:page_revision_id] ? 'bg-spina text-white cursor-default' : 'group-hover:bg-spina-dark group-hover:bg-opacity-10' %>">
+          <div class="leading-tight">
+            <div class="font-medium">
+              <%= page_revision.updated_by %>
+              <small class="opacity-50 text-xs">
+                <%=l page_revision.updated_at, format: :short %>
+              </small>
+            </div>
+          </div>
+          <% if link == "live" %>
+            <div class="text-emerald-500 font-medium">
+              <%=t "spina.pro.page_revisions.live" %>
+            </div>
+          <% else %>
+            <div class="opacity-50 text-xs">
+              #<%= page_revision.row_number %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    
+    <% if @version_history.next_page %>
+      <%= turbo_frame_tag "version_history_#{@version_history.next_page}", data: {action: "turbo:frame-load->infinite-scroll#load"} do %>
+        <%= link_to t('spina.ui.load_more'), path_to_next_page(@version_history), class: 'block', data: {infinite_scroll_target: "button"} %>
+      <% end %>
+    <% end %>
+  </turbo-frame>
+</turbo-frame>

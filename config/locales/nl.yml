@@ -1,0 +1,96 @@
+nl:
+  activerecord:
+    attributes:
+      spina/pro/inbox:
+        forward_email: Doorsturen naar
+      spina/pro/message:
+        email: Email
+      spina/pro/page_revision:
+        note: Notitie
+    models:
+      spina/pro/message: 
+        one: bericht
+        other: berichten
+  spina:
+    pro:
+      dates:
+        ascending: oplopend
+        descending: aflopend
+      seo:
+        description_fallback: Geen omschrijving
+        search_engine_preview: Zoekmachine preview
+      rewrite_rules:
+        add_rewrite_rule: Doorverwijzing toevoegen
+        auto_generated: Automatisch gegenereerd
+        auto_generated_explanation: "Spina maakt automatisch doorverwijzingen aan wanneer URL's veranderen. Je hoeft je geen zorgen te maken over doorverwijzingen na het wijzigen van een paginatitel."
+        delete_confirmation_html: Weet je zeker dat je deze <span class='font-semibold'>doorverwijzing</span> wil <span class='font-semibold'>verwijderen<span>?
+        rewrite_rules: Doorverwijzingen
+        save_rewrite_rule: Doorverwijzing opslaan
+        search: Zoeken
+        title: Doorverwijzingen
+        missing_pages: Ontbrekende pagina's
+      inboxes:
+        forward_messages: Nieuwe berichten doorsturen
+        forwarding_to: Doorsturen naar %{email}
+        forward_email_description: Alle binnenkomende berichten in deze inbox worden doorgestuurd naar dit e-mailadres
+        mark_all_as_read: Markeer alles als gelezen
+        marked_all_as_read: Alle berichten gemarkeerd als gelezen
+        save: Wijzigingen opslaan
+        search: Zoeken
+        settings: Instellingen
+      message_mailer:
+        forward:
+          body: "Je hebt zojuist een nieuw %{type} ontvangen van %{name}:"
+          new_messages:
+            one: "Je hebt nu 1 nieuw bericht in Spina CMS:"
+            other: "Je hebt nu %{count} nieuwe berichten in Spina CMS:"
+          new_messages_html:
+            one: "Je hebt nu <strong><a href=\"%{url}\" style=\"color: #3869D4;\">1 nieuw bericht</a></strong> in Spina CMS."
+            other: "Je hebt nu <strong><a href=\"%{url}\" style=\"color: #3869D4;\">%{count} nieuwe berichten</a></strong> in Spina CMS."
+          forward_settings: "Dit bericht is naar jou doorgestuurd via Spina CMS. Je kunt dit uitschakelen in de inbox doorstuurinstellingen:"
+          forward_settings_html: "Dit bericht is naar jou doorgestuurd via Spina CMS. Je kunt dit uitschakelen in de <a href=\"%{url}\" style=\"color: #3869D4;\">inbox doorstuurinstellingen</a>."
+          preheader: Je hebt zojuist een nieuw %{type} ontvangen van %{name}
+          subject: Nieuw %{type} ontvangen
+          title: Nieuw %{type}
+      messages:
+        archive: Archiveren
+        archived: Bericht gearchiveerd
+        archived_messages: Gearchiveerde berichten
+        forwarded: Bericht doorgestuurd naar %{email}
+        forward_now: Nu doorsturen
+        unarchived: Bericht uit archief gehaald
+        unarchive: Uit archief halen
+        mark_as_unread: Markeer als ongelezen
+        mark_as_spam: Markeer als spam
+        message_archive: Archief
+        new_messages:
+          one: "1 nieuw bericht"
+          other: "%{count} nieuwe berichten"
+        no_spam: Geen spam
+        save: Bericht opslaan
+        spam: Spam
+      not_found_errors:
+        explanation: "Elke keer dat een pagina niet gevonden kan worden, wordt dat bezoek opgeslagen. Je kunt doorverwijzingen maken voor URL's die je wilt omleiden. De andere kun je negeren."
+        ignored: Genegeerd
+        show_ignored: Genegeerde weergeven
+        tracking_disabled: "404-tracking is uitgeschakeld voor genegeerde niet-gevonden pagina's"
+        visits:
+          one: "1 bezoek"
+          other: "%{count} bezoeken"
+      page_revisions:
+        switch_to_draft: Schakel over naar concept
+        new_draft: Nieuw concept
+        create_new_draft: Maak nieuw concept
+        live: Live
+        live_version: Live versie
+        draft: Concept
+        drafts: Concepten
+        edit: Bewerk concept
+        editing: bewerken
+        last_updated: Laatst aangepast door %{name} op %{timestamp}
+        viewing_old_revision: Je bekijkt een oudere versie
+        publish_this_version: Publiceer deze versie
+        delete_confirmation_html: Weet je zeker dat je <strong>dit concept</strong> wilt verwijderen?
+      search:
+        placeholder: Zoeken...
+        shortcut: "snelkoppeling:"

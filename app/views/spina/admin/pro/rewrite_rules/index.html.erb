@@ -1,0 +1,31 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+
+  <% header.with_actions do %>
+    <%= link_to spina.new_admin_pro_rewrite_rule_path, class: "btn btn-default", data: {turbo_frame: "modal"} do %>
+      <%=t 'spina.pro.rewrite_rules.add_rewrite_rule' %>
+      <%= heroicon("arrow-right", style: :solid, class: 'w-4 h-4 ml-1 -mr-1') %>
+    <% end %>
+  <% end %>
+
+  <% header.with_navigation do %>
+    <%= render 'spina/admin/pro/shared/redirects_navigation' %>
+  <% end %>
+
+<% end %>
+
+<% if action_name == "auto_generated" %>
+  <%= render Spina::Pro::UserInterface::HintComponent.new(t("spina.pro.rewrite_rules.auto_generated_explanation")) %>
+<% end %>
+
+<%= form_with method: :get, data: {turbo_frame: :rewrite_rules, controller: "form"} do |f| %>
+  <div class="p-8">
+    <%= f.text_field :search, class: 'form-input w-full', placeholder: t("spina.pro.rewrite_rules.search"), data: {action: "form#requestSubmit"} %>
+  </div>
+<% end %>
+
+<div class="border-t border-gray-200">
+  <%= turbo_frame_tag :rewrite_rules do %>
+    <%= render @rewrite_rules %>
+  <% end %>
+</div>
+

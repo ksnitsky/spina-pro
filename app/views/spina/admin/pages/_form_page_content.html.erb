@@ -1,0 +1,15 @@
+<div class="max-w-5xl">
+  <label class="font-medium text-gray-700">
+    <%= Spina::Page.human_attribute_name(:title) %>
+  </label>
+  <% if @page_revision %>
+    <div class="bg-gray-100 border border-gray-300 shadow-sm text-base font-medium text-gray-400 cursor-not-allowed px-4 py-3 rounded-md flex items-center mt-1">
+      <%= @page.title %>
+    </div>
+  <% else %>
+    <%= render Spina::Forms::TextFieldComponent.new(f, :title, size: "lg") %>
+  <% end %>
+  
+  <turbo-frame id="page_content" src="<%= spina.edit_content_admin_page_path(f.object, request.query_parameters) %>">
+  </turbo-frame>
+</div>

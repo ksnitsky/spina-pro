@@ -1,0 +1,26 @@
+<%= render Spina::UserInterface::ModalComponent.new(size: "max-w-screen-md") do |modal| %>
+  <%= turbo_frame_tag :message_modal do %>
+    <%= form_with model: @message, scope: :message, url: spina.admin_pro_inbox_message_path(@inbox, @message) do |f| %>
+    
+      <div class="p-8 space-y-4 bg-white bg-opacity-75">
+        <%= render Spina::Forms::LabelComponent.new(f, :email) %>
+        <%= f.email_field :email, class: 'form-input w-full' %>
+        
+        <div class="space-y-4">
+          <% f.object.message_attributes.each do |attribute| %>
+            <div>
+              <%= render Spina::Forms::LabelComponent.new(f, attribute) %>
+              <%= render Spina::Pro::Messages::FieldComponent.new(f, attribute) %>
+            </div>
+          <% end %>
+        </div>
+        
+        <%= button_tag type: :submit, class: 'btn btn-primary', data: {controller: "button hotkeys", hotkeys: "command+s, ctrl+s", hotkeys_target: "button", action: "button#loading", loading_message: t("spina.ui.saving")} do %>
+          <%= heroicon('check', class: 'w-5 h-5 -ml-2 mr-1') %>
+          <%= t('spina.pro.messages.save') %>
+        <% end %>
+      </div>
+      
+    <% end %>
+  <% end %>
+<% end %>

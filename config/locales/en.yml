@@ -1,0 +1,96 @@
+en:
+  activerecord:
+    attributes:
+      spina/pro/inbox:
+        forward_email: Forward email
+      spina/pro/message:
+        email: Email
+      spina/pro/page_revision:
+        note: Note
+    models:
+      spina/pro/message: 
+        one: message
+        other: messages
+  spina:
+    pro:
+      dates:
+        ascending: ascending
+        descending: descending
+      seo:
+        description_fallback: No description
+        search_engine_preview: Search engine preview
+      rewrite_rules:
+        add_rewrite_rule: Add rewrite rule
+        auto_generated: Auto-generated
+        auto_generated_explanation: "Spina automatically creates rewrite rules when URLs change. You don't have to worry about redirecting after changing a page title or slug."
+        delete_confirmation_html: Are you sure you want to <span class='font-semibold'>delete</span> this <span class='font-semibold'>rewrite rule<span>?
+        rewrite_rules: Rewrite rules
+        save_rewrite_rule: Save rewrite rule
+        search: Search
+        title: Rewrite rules
+        missing_pages: Missing pages
+      inboxes:
+        forward_messages: Forward new messages
+        forwarding_to: Forwarding to %{email}
+        forward_email_description: All incoming messages in this inbox will be forwarded to this email address
+        mark_all_as_read: Mark all as read
+        marked_all_as_read: All messages marked as read
+        save: Save changes
+        search: Search
+        settings: Settings
+      message_mailer:
+        forward:
+          body: "You just received a new %{type} from %{name}:"
+          new_messages:
+            one: "You now have 1 new message in Spina CMS:"
+            other: "You now have %{count} new messages in Spina CMS:"
+          new_messages_html:
+            one: "You now have <strong><a href=\"%{url}\" style=\"color: #3869D4;\">1 new message</a></strong> in Spina CMS."
+            other: "You now have <strong><a href=\"%{url}\" style=\"color: #3869D4;\">%{count} new messages</a></strong> in Spina CMS."
+          forward_settings: "This message was forwarded to you via Spina CMS. You can disable this in the inbox forwarding settings:"
+          forward_settings_html: "This message was forwarded to you via Spina CMS. You can disable this in the <a href=\"%{url}\" style=\"color: #3869D4;\">inbox forwarding settings</a>."
+          preheader: You just received a new %{type} from %{name}
+          subject: New %{type} received
+          title: New %{type}
+      messages:
+        archive: Archive
+        archived: Message archived
+        archived_messages: Archived messages
+        forwarded: Message forwarded to %{email}
+        forward_now: Forward now
+        unarchived: Message unarchived
+        unarchive: Unarchive
+        mark_as_unread: Mark as unread
+        mark_as_spam: Mark as spam
+        message_archive: Archive
+        new_messages:
+          one: "1 new message"
+          other: "%{count} new messages"
+        no_spam: No spam
+        save: Save message
+        spam: Spam
+      not_found_errors:
+        explanation: "Every time a page cannot be found, Spina stores that visit. You may create rewrite rules for URLs you want to redirect. You can ignore the others."
+        ignored: Ignored
+        show_ignored: Show ignored
+        tracking_disabled: "404 tracking is disabled for ignored missing pages"
+        visits:
+          one: "1 visit"
+          other: "%{count} visits"
+      page_revisions:
+        switch_to_draft: Switch to a draft
+        new_draft: New draft
+        create_new_draft: Create a new draft
+        live: Live
+        live_version: Live version
+        draft: Draft
+        drafts: Drafts
+        edit: Edit draft
+        editing: editing
+        last_updated: Last updated by %{name} on %{timestamp}
+        viewing_old_revision: You're viewing an older revision
+        publish_this_version: Publish this version
+        delete_confirmation_html: Are you sure you want to delete <strong>this draft</strong>?
+      search:
+        placeholder: "Search..."
+        shortcut: "shortcut:"

@@ -1,0 +1,10 @@
+<%= turbo_frame_tag :ignored_not_found_errors do %>
+  <div class="px-8 mt-8 mb-2">
+    <div class="font-medium"><%=t "spina.pro.not_found_errors.ignored" %></div>
+    <div class="text-sm text-gray-600">
+      <%=t "spina.pro.not_found_errors.tracking_disabled" %>
+    </div>
+  </div>
+  
+  <%= render partial: "not_found_error", collection: @not_found_errors %>
+<% end %>

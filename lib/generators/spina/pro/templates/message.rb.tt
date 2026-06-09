@@ -1,0 +1,5 @@
+class <%= class_name %> < Spina::Pro::Message
+<% attributes.each.with_index do |attribute, index| -%>
+  field :<%= attribute.name %>, :<%= attribute.type %><%= ", index: true" if index.zero? %>
+<%- end -%>
+end

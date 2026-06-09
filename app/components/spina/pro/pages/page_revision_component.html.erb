@@ -1,0 +1,42 @@
+<div class="ml-2">
+  <%= render Spina::UserInterface::DropdownComponent.new do |dropdown| %>
+    <% dropdown.with_button(classes: "btn btn-default h-6 px-1.5") do %>
+      <% if page_revision&.draft? || page.draft? %>
+        <div class="text-xs text-gray-500 uppercase font-semibold">
+          <%= Spina::Page.human_attribute_name(:draft) %>
+        </div>
+      <% elsif page_revision.present? %>
+        <div class="text-xs text-gray-500 uppercase font-semibold">
+          <%=l page_revision.updated_at, format: :short %>
+        </div>
+      <% else %>
+        <div class="text-xs text-emerald-500 uppercase font-semibold">
+          <%=t "spina.pro.page_revisions.live" %>
+        </div>
+      <% end %>
+      
+      <%= helpers.heroicon("chevron-down", style: :mini, class: "w-3 h-3 ml-1") %>
+    <% end %>
+    
+    <% dropdown.with_menu do %>
+      <div class="relative overflow-scroll" style="max-height: 220px" data-controller="infinite-scroll" data-infinite-scroll-target="container">
+        <%= helpers.turbo_frame_tag "version_history", src: helpers.spina.admin_pro_page_version_history_path(page, page_revision_id: page_revision&.id) %>
+      </div>
+      
+      <div class="px-2 py-1">
+        <% if @page.drafts.any? %>
+          <%= link_to helpers.spina.admin_pro_page_drafts_path(page, editing_id: page_revision&.id), class: 'btn btn-default h-7 text-xs', data: {turbo_frame: "modal"} do %>
+            <%=t "spina.pro.page_revisions.drafts" %> (<%= @page.drafts.count %>)
+          <% end %>
+        <% else %>
+          <%= form_with url: helpers.spina.admin_pro_page_drafts_path(@page), data: {turbo_frame: "_top"} do |f| %>
+            <%= button_tag type: :submit, class: "btn btn-default h-8 text-xs w-full" do %>
+              <%= helpers.heroicon('plus', style: :mini, class: 'w-4 h-4 mr-1') %>
+              <%=t "spina.pro.page_revisions.create_new_draft" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,52 @@
+<%= render Spina::UserInterface::ModalComponent.new do |modal| %>
+  <div class="pt-5">
+
+    <div class="flex items-center px-6 mb-3">
+      <h3 class="text-lg font-medium text-gray-900">
+        <%=t "spina.pro.page_revisions.drafts" %>
+      </h3>
+      <%= form_with url: spina.admin_pro_page_drafts_path(@page), data: {turbo_frame: "_top"} do |f| %>
+        <%= button_tag type: :submit, class: "btn btn-default h-7 px-2 ml-2" do %>
+          <%= heroicon('plus', style: :mini, class: 'w-4 h-4') %>
+        <% end %>
+      <% end %>
+    </div>
+    
+    <% @drafts.reorder(:created_at).each do |page_revision| %>
+      <%= turbo_frame_tag dom_id(page_revision) do %>
+        <div class="flex items-center border-t border-gray-200">
+          <div class="p-3 px-6 flex items-center w-full justify-between">
+            <div>
+              <div class="">
+                <span class="font-medium">
+                  <%= page_revision.updated_by %>
+                  <% if page_revision.id.to_s == params[:editing_id] %>
+                    (<%=t "spina.pro.page_revisions.editing" %>)
+                  <% end %>
+                </span>
+                <span class="text-xs text-gray-500"><%=l page_revision.updated_at, format: :short %></span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <%= link_to "?revision=#{page_revision.id}", class: "btn btn-default h-8 text-xs px-3", data: {turbo_frame: "_top"} do %>
+                <%= heroicon("pencil-square", style: :solid, class: 'w-4 h-4 mr-1') %>
+                <%=t "spina.pro.page_revisions.edit_draft" %>
+              <% end %>
+
+              <%= button_to spina.admin_pro_page_draft_path(@page, page_revision), method: :delete, class: 'btn btn-default h-8 px-2' do %>
+                <%= heroicon("trash", style: :outline, class: 'w-4 h-4') %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="px-6 pb-5">
+          <%= form_with model: page_revision, url: spina.admin_pro_page_draft_path(@page, page_revision), data: {controller: "form-autosave"} do |f| %>
+            <%= f.text_area :note, placeholder: Spina::Pro::PageRevision.human_attribute_name(:note), class: "w-full form-input text-sm bg-gray-200 resize-none", data: {action: "input->form-autosave#save"} %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    
+  </div>
+<% end %>

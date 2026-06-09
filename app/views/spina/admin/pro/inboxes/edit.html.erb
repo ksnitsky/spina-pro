@@ -1,0 +1,21 @@
+<%= form_with model: @inbox, url: spina.admin_pro_inbox_path(@inbox) do |f| %>
+  <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+    <% header.with_actions do %>
+  
+      <%= button_tag type: :submit, class: 'btn btn-primary', data: {controller: "button hotkeys", hotkeys: "command+s, ctrl+s", hotkeys_target: "button", action: "button#loading", loading_message: t("spina.ui.saving")} do %>
+        <%= heroicon('check', style: :solid, class: 'w-5 h-5 mr-1 -ml-2') %>
+        <%= t('spina.pro.inboxes.save') %>
+      <% end %>      
+      
+    <% end %>
+  <% end %>
+  
+  <div class="p-4 md:p-8 max-w-screen-xl">
+    
+    <%= render Spina::Forms::GroupComponent.new(label: Spina::Pro::Inbox.human_attribute_name(:forward_email), description: t('spina.pro.inboxes.forward_email_description')) do %>
+      <%= render Spina::Forms::LabelComponent.new(f, :forward_email) %>
+      <%= render Spina::Forms::TextFieldComponent.new(f, :forward_email) %>
+    <% end %>
+    
+  </div>
+<% end %>

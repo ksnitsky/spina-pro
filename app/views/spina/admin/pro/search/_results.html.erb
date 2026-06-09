@@ -1,0 +1,9 @@
+<%= turbo_frame_tag :search_results do %>
+  <% if @results.present? %>
+    <div class="py-2">
+      <% @results.each.with_index do |result, index| %>
+        <%= render partial: "spina/admin/pro/search/results/#{result.searchable_type.demodulize.underscore}", object: result.searchable, locals: {index: index} %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

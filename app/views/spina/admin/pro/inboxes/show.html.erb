@@ -1,0 +1,50 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.with_after_breadcrumbs do %>
+    <div class="ml-1 text-base text-gray-400">
+      (<%= number_with_delimiter @inbox.messages.not_archived.count %>)
+    </div>
+  <% end %>
+  
+  <% header.with_actions do %>
+    <% if @inbox.messages.unread.any? %>
+      <%= button_to spina.mark_all_as_read_admin_pro_inbox_path(@inbox), class: "btn btn-default" do %>
+        <%= heroicon('eye', style: :solid, class: 'w-4 h-4 mr-2 -ml-1') %>
+        <%=t "spina.pro.inboxes.mark_all_as_read" %>
+      <% end %>
+    <% end %>
+    
+    <%= link_to spina.edit_admin_pro_inbox_path(@inbox), class: 'btn btn-default px-3' do %>
+      <% if @inbox.forwarding? %>
+        <%= heroicon('mail', style: :solid, class: 'w-4 h-4 mr-2') %>
+        <%=t "spina.pro.inboxes.forwarding_to", email: @inbox.forward_email %>
+      <% else %>
+        <%=t "spina.pro.inboxes.forward_messages" %>
+        <%= heroicon('arrow-narrow-right', style: :solid, class: 'w-5 h-5 ml-1') %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="p-8">
+  <% if false %>
+    <%= form_with method: :get do |f| %>
+      <%= f.text_field :search, value: params[:search], class: 'form-input w-full mb-10', placeholder: t("spina.pro.inboxes.search") %>
+    <% end %>
+  <% end %>
+  
+  <div class="mb-10 shadow-sm border border-gray-200 bg-white rounded-lg overflow-hidden" data-controller="infinite-scroll">    
+    <%= turbo_stream_from @inbox %>
+    <%= turbo_frame_tag :messages do %>
+      <%= turbo_frame_tag "messages-#{@messages.current_page}" do %>
+        <%= render partial: 'spina/admin/pro/messages/message', collection: @messages %>
+        
+        <% if @messages.next_page %>
+          <%= turbo_frame_tag "messages-#{@messages.next_page}", data: {action: "turbo:frame-load->infinite-scroll#load"} do %>
+            <%= link_to "", path_to_next_page(@messages), class: 'block', data: {infinite_scroll_target: "button"} %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    
+  </div>
+</div>
