@@ -15,6 +15,7 @@
 - Fixed invalid markup in the message modal
 - Rewrite rules require a `new_path` that is an absolute path or an http(s) URL without whitespace or control characters, with an explanatory error message; path-relative targets raise with Rails 8.1 defaults
 - Fixed the `form-autosave` Stimulus controller failing to register because of an import of a nonexistent `form-request-submit-polyfill`
+- The message modal only shows scrollbars when its content overflows
 
 ## 0.13
 

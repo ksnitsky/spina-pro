@@ -1,4 +1,4 @@
-<%= render Spina::UserInterface::ModalComponent.new(size: "max-w-screen-md max-h-full overflow-scroll") do |modal| %>
+<%= render Spina::UserInterface::ModalComponent.new(size: "max-w-screen-md max-h-full overflow-auto") do |modal| %>
   <%= turbo_frame_tag :message_modal do %>
     <div class="bg-white/75 flex p-3 items-center border-b border-gray-200">
       <div class="space-x-2 flex items-center">
