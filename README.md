@@ -95,6 +95,17 @@ to: "someone@example.com")` sends a message to any address.
 Bug reports and pull requests are welcome. This project is released under the
 MIT license, so feel free to use it, fork it and build on top of it.
 
+### Running the tests
+
+The tests run against the dummy app in `spec/dummy` and need PostgreSQL. Point
+`DATABASE_URL` at a test database when your local user can't connect as-is:
+
+```bash
+export DATABASE_URL=postgres://postgres:postgres@localhost:5432/spina_pro_test
+(cd spec/dummy && RAILS_ENV=test bin/rails db:create db:schema:load)
+bundle exec rake test
+```
+
 ## License
 
 The gem is available as open source under the terms of the

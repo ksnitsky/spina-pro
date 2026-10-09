@@ -9,4 +9,4 @@ gemspec
 gem 'pg'
 gem 'propshaft'
 gem 'puma'
-gem 'web-console'
+gem 'web-console', group: :development
