@@ -72,12 +72,12 @@
           <% next if @message.send(key).blank? %>
           <tr>
             <td class="text-right text-xs font-semibold uppercase text-gray-400 tracking-wide whitespace-nowrap align-top py-1 px-3 leading-6">
-              <%= label_tag key %>
+              <%= @message.class.human_attribute_name(key) %>
             </td>
             <td class="text-sm py-1 leading-6 whitespace-pre-line"><%= @message.send(key) %></td>
           </tr>
         <% end %>
       </table>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>
