@@ -55,6 +55,39 @@ Spina::Pro.track_not_found_errors = true
 Spina Pro requires Spina `>= 2.15.0` and a PostgreSQL database (the search and
 several other features rely on PostgreSQL-specific functionality).
 
+## Forwarding messages
+
+When an inbox has a forward email, new messages are emailed to it. A message
+class can change where and how a message is forwarded:
+
+```ruby
+class ContactForm < Spina::Pro::Message
+  field :name, :string, index: true
+  field :email, :string
+  field :message, :text
+
+  # Recipient (default: the inbox's forward email)
+  def forward_target
+    "sales@example.com"
+  end
+
+  # Subject (default: the spina.pro.message_mailer.forward.subject translation)
+  def forward_subject
+    "New contact form message from #{name}"
+  end
+
+  # Extra mail headers
+  def forward_email_headers
+    {reply_to: email}
+  end
+end
+```
+
+If the app has a template named after the message class, such as
+`app/views/spina/pro/message_mailer/contact_form.html.erb`, it is used instead
+of the default forward template. `Spina::Pro::MessageMailer.forward(message,
+to: "someone@example.com")` sends a message to any address.
+
 ## Contributing
 
 Bug reports and pull requests are welcome. This project is released under the

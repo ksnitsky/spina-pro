@@ -104,7 +104,25 @@ module Spina
       def fallback_url
         "https://eu.ui-avatars.com/api/#{CGI.escape(json_attributes.values.first.to_s)}/128"
       end
-      
+
+      # Forwarding
+      # Override these in a message class to customize forwarded emails.
+
+      # Email address the message is forwarded to
+      def forward_target
+        inbox.forward_email
+      end
+
+      # Subject of the forward email, nil uses the default translation
+      def forward_subject
+        nil
+      end
+
+      # Extra headers for the forward email, e.g. {from: "...", reply_to: email}
+      def forward_email_headers
+        {}
+      end
+
       class << self
         
         def field(name, type, **options)
@@ -134,6 +152,7 @@ module Spina
         end
         
         def forward_message
+          return if forward_target.blank?
           MessageMailer.forward(self).deliver_later
         end
       
