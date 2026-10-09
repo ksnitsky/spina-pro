@@ -2,7 +2,7 @@
   <%= turbo_frame_tag :message_modal do %>
     <%= form_with model: @message, scope: :message, url: spina.admin_pro_inbox_message_path(@inbox, @message) do |f| %>
     
-      <div class="p-8 space-y-4 bg-white bg-opacity-75">
+      <div class="p-8 space-y-4 bg-white/75">
         <%= render Spina::Forms::LabelComponent.new(f, :email) %>
         <%= f.email_field :email, class: 'form-input w-full' %>
         

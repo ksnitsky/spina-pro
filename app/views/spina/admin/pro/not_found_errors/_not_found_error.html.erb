@@ -27,7 +27,7 @@
 
     <%= form_with model: not_found_error, url: spina.admin_pro_not_found_error_path(not_found_error) do |f| %>
       <%= f.hidden_field :ignored, value: !not_found_error.ignored? %>
-      <%= button_tag type: :submit, class: "block py-3 px-4 ml-2 text-gray-500 hover:text-gray-900 group-hover:opacity-100 #{'opacity-0' unless not_found_error.ignored?}" do %>
+      <%= button_tag type: :submit, class: "block cursor-pointer py-3 px-4 ml-2 text-gray-500 hover:text-gray-900 group-hover:opacity-100 #{'opacity-0' unless not_found_error.ignored?}" do %>
         <%= heroicon('eye-off', style: :solid, class: "w-4 h-4") %>
       <% end %>
     <% end %>

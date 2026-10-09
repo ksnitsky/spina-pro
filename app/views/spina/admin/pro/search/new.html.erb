@@ -1,6 +1,6 @@
 <turbo-frame id="modal">
   <div class="modal items-start max-h-screen py-6 pt-20" data-controller="modal" data-action="keyup@document->modal#escClose">
-    <button type="button" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-25 animate__animated animate__fadeIn animate__faster" tabindex="-1" data-action="modal#close"></button>
+    <button type="button" class="cursor-default w-full h-full fixed inset-0 bg-gray-700/25 animate__animated animate__fadeIn animate__faster" tabindex="-1" data-action="modal#close"></button>
     
     <div class="modal-window <%= @size %> animate__animated animate__fadeInDown animate__faster">
   
@@ -11,7 +11,7 @@
           <div class="absolute right-0 top-0 text-xs h-full flex items-center pr-4 text-gray-500">
             <div class="mx-1.5"><%=t "spina.pro.search.shortcut" %></div>
             
-            <div class="bg-gradient-to-b from-gray-100 to-gray-200 border border-gray-300 text-gray-600 font-medium shadow-sm h-6 px-1 justify-center flex items-center rounded">
+            <div class="bg-gradient-to-b from-gray-100 to-gray-200 border border-gray-300 text-gray-600 font-medium shadow-xs h-6 px-1 justify-center flex items-center rounded">
               <% if mac_or_ios? %>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 -ml-0.5" fill="currentColor" viewBox="0 0 800 1000"><path fill-rule="evenodd" clip-rule="evenodd" d="M646.982,441.35h-46.415v108.302h46.415c51.271,0,92.83,41.565,92.83,92.831  c0,51.273-41.559,92.83-92.83,92.83c-51.266,0-92.831-41.557-92.831-92.83v-46.415H445.849v46.415  c0,51.273-41.564,92.83-92.831,92.83c-51.265,0-92.83-41.557-92.83-92.83c0-51.266,41.565-92.831,92.83-92.831h46.416V441.35  h-46.416c-51.265,0-92.83-41.565-92.83-92.83c0-51.265,41.565-92.831,92.83-92.831c51.267,0,92.831,41.565,92.831,92.831v46.415  h108.302V348.52c0-51.265,41.565-92.831,92.831-92.831c51.271,0,92.83,41.565,92.83,92.831  C739.812,399.784,698.254,441.35,646.982,441.35 M600.567,642.482c0,25.639,20.774,46.415,46.415,46.415  s46.415-20.776,46.415-46.415c0-22.981-16.748-41.937-38.68-45.639v-0.776h-54.15V642.482z M399.434,348.52  c0-25.641-20.775-46.416-46.416-46.416c-25.639,0-46.415,20.775-46.415,46.416c0,25.639,20.776,46.415,46.415,46.415h46.416V348.52z   M306.604,642.482c0,25.639,20.776,46.415,46.415,46.415c25.641,0,46.416-20.776,46.416-46.415v-46.415h-46.416  C327.379,596.067,306.604,616.843,306.604,642.482 M554.151,441.35H445.849v108.302h108.302V441.35z M646.982,302.104  c-25.641,0-46.415,20.775-46.415,46.416v46.415h46.415c25.641,0,46.415-20.776,46.415-46.415  C693.397,322.879,672.623,302.104,646.982,302.104"/></svg>
               <% else %>

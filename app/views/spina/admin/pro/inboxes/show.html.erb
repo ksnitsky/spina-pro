@@ -32,7 +32,7 @@
     <% end %>
   <% end %>
   
-  <div class="mb-10 shadow-sm border border-gray-200 bg-white rounded-lg overflow-hidden" data-controller="infinite-scroll">    
+  <div class="mb-10 shadow-xs border border-gray-200 bg-white rounded-lg overflow-hidden" data-controller="infinite-scroll">    
     <%= turbo_stream_from @inbox %>
     <%= turbo_frame_tag :messages do %>
       <%= turbo_frame_tag "messages-#{@messages.current_page}" do %>
