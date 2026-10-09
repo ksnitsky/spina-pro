@@ -41,13 +41,19 @@ module Spina
           pin_all_from Spina::Pro::Engine.root.join("app/assets/javascripts/spina/pro/libraries"), under: "libraries", to: "spina/pro/libraries"
         end
         
-        # Add assets manifest to assets.precompile
-        app.config.assets.precompile += %w(spina/pro/manifest.js)
-        
-        # Add views for Tailwind
+        # Add assets manifest to assets.precompile (Sprockets only, Propshaft
+        # serves every file in app/assets without a manifest)
+        if defined?(Sprockets)
+          app.config.assets.precompile += %w(spina/pro/manifest.js)
+        end
+
+        # Add views, components and Stimulus controllers to Spina's Tailwind
+        # sources. Spina >= 2.21 turns every entry into an @source line of its
+        # generated application.tailwind.css.
         Spina.config.tailwind_content.concat [
           "#{Spina::Pro::Engine.root}/app/views/**/*.*",
-          "#{Spina::Pro::Engine.root}/app/components/**/*.*"
+          "#{Spina::Pro::Engine.root}/app/components/**/*.*",
+          "#{Spina::Pro::Engine.root}/app/assets/javascripts/**/*.js"
         ]
       end
       
