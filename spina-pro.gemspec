@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md", "LICENSE", "CHANGELOG.md"]
 
-  spec.add_dependency "spina", ">= 2.15.0"
+  spec.add_dependency "spina", ">= 2.21", "< 3"
   spec.add_dependency "pg_search"
   # spec.add_dependency "acts_as_tenant", ">= 0.5.1"
 end

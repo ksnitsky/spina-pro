@@ -6,6 +6,7 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+gem 'pg'
+gem 'propshaft'
 gem 'puma'
 gem 'web-console'
-gem 'spina', path: '~/apps/spina'

@@ -52,8 +52,10 @@ Spina::Pro.postgresql_dictionary  = "english"
 Spina::Pro.track_not_found_errors = true
 ```
 
-Spina Pro requires Spina `>= 2.15.0` and a PostgreSQL database (the search and
-several other features rely on PostgreSQL-specific functionality).
+Spina Pro requires Spina `>= 2.21` and a PostgreSQL database (the search and
+several other features rely on PostgreSQL-specific functionality). The admin
+views use Tailwind CSS 4 classes, which Spina 2.21 compiles; use Spina Pro
+0.13 with older Spina versions.
 
 ## Forwarding messages
 
