@@ -26,12 +26,6 @@
 <% end %>
 
 <div class="p-8">
-  <% if false %>
-    <%= form_with method: :get do |f| %>
-      <%= f.text_field :search, value: params[:search], class: 'form-input w-full mb-10', placeholder: t("spina.pro.inboxes.search") %>
-    <% end %>
-  <% end %>
-  
   <div class="mb-10 shadow-xs border border-gray-200 bg-white rounded-lg overflow-hidden" data-controller="infinite-scroll">    
     <%= turbo_stream_from @inbox %>
     <%= turbo_frame_tag :messages do %>
