@@ -57,6 +57,7 @@ nl:
         archived: Bericht gearchiveerd
         archived_messages: Gearchiveerde berichten
         forwarded: Bericht doorgestuurd naar %{email}
+        not_forwarded: Bericht niet doorgestuurd, er is geen ontvanger
         forward_now: Nu doorsturen
         unarchived: Bericht uit archief gehaald
         unarchive: Uit archief halen

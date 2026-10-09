@@ -29,7 +29,7 @@ module Spina
       after_update_commit :broadcast_replace_to_inbox
       
       # Forward message to email if Inbox forwarding is setup
-      after_create_commit :forward_message, if: -> { ham? && inbox.forwarding? }
+      after_create_commit :forward_message, if: -> { ham? && forwardable? }
       
       def to_name        
         if message_attributes.include? :name
@@ -118,6 +118,11 @@ module Spina
         nil
       end
 
+      # Whether the message can be forwarded: the inbox forwards and there's a target
+      def forwardable?
+        inbox.forwarding? && forward_target.present?
+      end
+
       # Extra headers for the forward email, e.g. {from: "...", reply_to: email}
       def forward_email_headers
         {}
@@ -152,7 +157,6 @@ module Spina
         end
         
         def forward_message
-          return if forward_target.blank?
           MessageMailer.forward(self).deliver_later
         end
       

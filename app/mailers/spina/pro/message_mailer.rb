@@ -7,7 +7,8 @@ module Spina
       #
       # Renders spina/pro/message_mailer/<message class name underscored>
       # when the app has such a template (e.g. contact_form.html.erb for
-      # ContactForm), otherwise the default forward template.
+      # ContactForm, forms/callback.html.erb for Forms::Callback), otherwise
+      # the default forward template.
       def forward(message, to: nil)
         @message = message
         @inbox = message.inbox
@@ -31,7 +32,7 @@ module Spina
 
         def forward_template_name
           template_name = @message.class.name.underscore
-          template_exists?(template_name, mailer_name) ? template_name : "forward"
+          template_exists?(template_name, [mailer_name]) ? template_name : "forward"
         end
 
     end

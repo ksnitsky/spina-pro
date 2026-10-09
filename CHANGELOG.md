@@ -9,7 +9,8 @@
 - Fixed booting without Sprockets (Propshaft apps)
 - Replaced the deprecated `ActiveSupport::Configurable` with a configuration object; `Spina::Pro.config`, `Spina::Pro.configure` and `Spina::Pro.<option>=` keep working
 - Stimulus controllers are now part of Spina's Tailwind sources
-- Message classes can customize forwarding with `forward_target`, `forward_subject` and `forward_email_headers`, and with a mail template named after the class; `MessageMailer.forward` accepts `to:`
+- Message classes can customize forwarding with `forward_target`, `forward_subject` and `forward_email_headers`, and with a mail template named after the class (`forms/callback` for `Forms::Callback`); `MessageMailer.forward` accepts `to:`
+- "Forward now" reports when a message has no recipient instead of claiming it was forwarded
 - Message fields in the message modal use the model's attribute translations
 - Fixed invalid markup in the message modal
 - Rewrite rules require a `new_path` that is an absolute path or an http(s) URL; path-relative targets raise in Rails 8.1

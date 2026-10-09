@@ -42,8 +42,12 @@ module Spina::Admin
       end
       
       def forward
-        Spina::Pro::MessageMailer.forward(@message).deliver_later if @inbox.forwarding?
-        flash[:info] = t("spina.pro.messages.forwarded", email: @message.forward_target)
+        if @message.forwardable?
+          Spina::Pro::MessageMailer.forward(@message).deliver_later
+          flash[:info] = t("spina.pro.messages.forwarded", email: @message.forward_target)
+        else
+          flash[:alert] = t("spina.pro.messages.not_forwarded")
+        end
         redirect_to spina.admin_pro_inbox_path(@inbox)
       end
       

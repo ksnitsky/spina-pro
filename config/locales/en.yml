@@ -57,6 +57,7 @@ en:
         archived: Message archived
         archived_messages: Archived messages
         forwarded: Message forwarded to %{email}
+        not_forwarded: Message not forwarded, it has no recipient
         forward_now: Forward now
         unarchived: Message unarchived
         unarchive: Unarchive
