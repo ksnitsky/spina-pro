@@ -19,6 +19,9 @@ module Spina
         # Page ordering by Date/DateTime
         Spina::Page.include Spina::Pro::OrderByDate
         Spina::Resource.prepend Spina::Pro::PageOrdering
+
+        # Rewrite rules
+        Spina::RewriteRule.include Spina::Pro::RewriteRuleValidations
       end
       
       config.before_initialize do

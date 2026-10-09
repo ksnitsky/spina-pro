@@ -15,6 +15,7 @@ require "spina/pro/page_search"
 require "spina/pro/recently_visited"
 require "spina/pro/order_by_date"
 require "spina/pro/page_ordering"
+require "spina/pro/rewrite_rule_validations"
 
 # Page revisions
 require "spina/pro/page_revisions/load_page_revision"

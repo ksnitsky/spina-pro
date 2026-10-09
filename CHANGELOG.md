@@ -12,6 +12,7 @@
 - Message classes can customize forwarding with `forward_target`, `forward_subject` and `forward_email_headers`, and with a mail template named after the class; `MessageMailer.forward` accepts `to:`
 - Message fields in the message modal use the model's attribute translations
 - Fixed invalid markup in the message modal
+- Rewrite rules require a `new_path` that is an absolute path or an http(s) URL; path-relative targets raise in Rails 8.1
 
 ## 0.13
 
