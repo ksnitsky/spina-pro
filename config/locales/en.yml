@@ -1,5 +1,11 @@
 en:
   activerecord:
+    errors:
+      models:
+        spina/rewrite_rule:
+          attributes:
+            new_path:
+              invalid: must start with / or http(s)://
     attributes:
       spina/pro/inbox:
         forward_email: Forward email

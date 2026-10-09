@@ -1,5 +1,11 @@
 nl:
   activerecord:
+    errors:
+      models:
+        spina/rewrite_rule:
+          attributes:
+            new_path:
+              invalid: moet beginnen met / of http(s)://
     attributes:
       spina/pro/inbox:
         forward_email: Doorsturen naar

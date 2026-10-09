@@ -13,7 +13,7 @@
 - "Forward now" reports when a message has no recipient instead of claiming it was forwarded
 - Message fields in the message modal use the model's attribute translations
 - Fixed invalid markup in the message modal
-- Rewrite rules require a `new_path` that is an absolute path or an http(s) URL; path-relative targets raise in Rails 8.1
+- Rewrite rules require a `new_path` that is an absolute path or an http(s) URL without whitespace or control characters, with an explanatory error message; path-relative targets raise with Rails 8.1 defaults
 
 ## 0.13
 
