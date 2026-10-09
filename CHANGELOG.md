@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.14
+
+### 0.14.0
+- Spina Pro now requires Spina >= 2.21 (Tailwind CSS 4). Use 0.13 with older Spina versions
+- Updated admin views for Tailwind CSS 4 (slash opacity, `shadow-xs`, `cursor-pointer` on plain buttons)
+- Fixed admin routes ignoring `Spina.config.backend_path` (they were always mounted at `/admin/pro`)
+- Fixed booting without Sprockets (Propshaft apps)
+- Replaced the deprecated `ActiveSupport::Configurable` with a configuration object; `Spina::Pro.config`, `Spina::Pro.configure` and `Spina::Pro.<option>=` keep working
+- Stimulus controllers are now part of Spina's Tailwind sources
+- Message classes can customize forwarding with `forward_target`, `forward_subject` and `forward_email_headers`, and with a mail template named after the class (`forms/callback` for `Forms::Callback`); `MessageMailer.forward` accepts `to:`
+- "Forward now" reports when a message has no recipient instead of claiming it was forwarded
+- Message fields in the message modal use the model's attribute translations
+- Fixed invalid markup in the message modal
+- Rewrite rules require a `new_path` that is an absolute path or an http(s) URL without whitespace or control characters, with an explanatory error message; path-relative targets raise with Rails 8.1 defaults
+- Fixed the `form-autosave` Stimulus controller failing to register because of an import of a nonexistent `form-request-submit-polyfill`
+- The message modal only shows scrollbars when its content overflows
+- Version history: the date is on its own line, long names wrap instead of overflowing the dropdown, and the list only shows scrollbars when needed
+
+## 0.13
+
+### 0.13.0
+- Open-sourced under the MIT license, removed licensing
+
 ## 0.12
 
 ### 0.12.0

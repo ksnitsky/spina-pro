@@ -19,7 +19,7 @@
     <% end %>
     
     <% dropdown.with_menu do %>
-      <div class="relative overflow-scroll" style="max-height: 220px" data-controller="infinite-scroll" data-infinite-scroll-target="container">
+      <div class="relative overflow-auto" style="max-height: 220px" data-controller="infinite-scroll" data-infinite-scroll-target="container">
         <%= helpers.turbo_frame_tag "version_history", src: helpers.spina.admin_pro_page_version_history_path(page, page_revision_id: page_revision&.id) %>
       </div>
       

@@ -17,7 +17,7 @@
 <% end %>
 
 <div class="p-8">
-  <div class="mb-10 shadow-sm border border-gray-200 bg-white rounded-lg" data-controller="infinite-scroll">
+  <div class="mb-10 shadow-xs border border-gray-200 bg-white rounded-lg" data-controller="infinite-scroll">
     
     <%= turbo_frame_tag "spam-messages" do %>
       <%= turbo_frame_tag "spam-messages-#{@messages.current_page}" do %>

@@ -3,21 +3,21 @@
     <% @version_history.each.with_index do |page_revision, index| %>
       <% link = index.zero? && @version_history.current_page == 1 && !@page.draft ? "live" : page_revision.id %>
       <%= link_to "?revision=#{link}", class: "block text-sm px-1 pb-1 group", data: {turbo_frame: "_top"} do %>
-        <div class="p-2 px-3 rounded-md flex items-center justify-between <%= page_revision.id.to_s == params[:page_revision_id] ? 'bg-spina text-white cursor-default' : 'group-hover:bg-spina-dark group-hover:bg-opacity-10' %>">
-          <div class="leading-tight">
-            <div class="font-medium">
+        <div class="p-2 px-3 rounded-md flex items-center gap-2 <%= page_revision.id.to_s == params[:page_revision_id] ? 'bg-spina text-white cursor-default' : 'group-hover:bg-spina-dark/10' %>">
+          <div class="flex-1 min-w-0 leading-tight">
+            <div class="font-medium break-words">
               <%= page_revision.updated_by %>
-              <small class="opacity-50 text-xs">
+              <small class="block opacity-50 text-xs">
                 <%=l page_revision.updated_at, format: :short %>
               </small>
             </div>
           </div>
           <% if link == "live" %>
-            <div class="text-emerald-500 font-medium">
+            <div class="shrink-0 text-emerald-500 font-medium">
               <%=t "spina.pro.page_revisions.live" %>
             </div>
           <% else %>
-            <div class="opacity-50 text-xs">
+            <div class="shrink-0 opacity-50 text-xs">
               #<%= page_revision.row_number %>
             </div>
           <% end %>

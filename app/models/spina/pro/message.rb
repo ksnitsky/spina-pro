@@ -29,7 +29,7 @@ module Spina
       after_update_commit :broadcast_replace_to_inbox
       
       # Forward message to email if Inbox forwarding is setup
-      after_create_commit :forward_message, if: -> { ham? && inbox.forwarding? }
+      after_create_commit :forward_message, if: -> { ham? && forwardable? }
       
       def to_name        
         if message_attributes.include? :name
@@ -104,7 +104,30 @@ module Spina
       def fallback_url
         "https://eu.ui-avatars.com/api/#{CGI.escape(json_attributes.values.first.to_s)}/128"
       end
-      
+
+      # Forwarding
+      # Override these in a message class to customize forwarded emails.
+
+      # Email address the message is forwarded to
+      def forward_target
+        inbox.forward_email
+      end
+
+      # Subject of the forward email, nil uses the default translation
+      def forward_subject
+        nil
+      end
+
+      # Whether the message can be forwarded: the inbox forwards and there's a target
+      def forwardable?
+        inbox.forwarding? && forward_target.present?
+      end
+
+      # Extra headers for the forward email, e.g. {from: "...", reply_to: email}
+      def forward_email_headers
+        {}
+      end
+
       class << self
         
         def field(name, type, **options)

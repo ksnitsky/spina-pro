@@ -1,6 +1,6 @@
-<%= render Spina::UserInterface::ModalComponent.new(size: "max-w-screen-md max-h-full overflow-scroll") do |modal| %>
+<%= render Spina::UserInterface::ModalComponent.new(size: "max-w-screen-md max-h-full overflow-auto") do |modal| %>
   <%= turbo_frame_tag :message_modal do %>
-    <div class="bg-white bg-opacity-75 flex p-3 items-center border-b border-gray-200">
+    <div class="bg-white/75 flex p-3 items-center border-b border-gray-200">
       <div class="space-x-2 flex items-center">
         
         <% if @inbox.forwarding? %>
@@ -55,7 +55,7 @@
       </div>
     </div>
   
-    <div class="p-6 space-y-4 bg-white bg-opacity-75">
+    <div class="p-6 space-y-4 bg-white/75">
       <table class="table-auto">
         <tr>
           <td class="text-right text-xs font-semibold uppercase text-gray-400 tracking-wide whitespace-nowrap align-middle pb-4 px-3 leading-6">
@@ -72,12 +72,12 @@
           <% next if @message.send(key).blank? %>
           <tr>
             <td class="text-right text-xs font-semibold uppercase text-gray-400 tracking-wide whitespace-nowrap align-top py-1 px-3 leading-6">
-              <%= label_tag key %>
+              <%= @message.class.human_attribute_name(key) %>
             </td>
             <td class="text-sm py-1 leading-6 whitespace-pre-line"><%= @message.send(key) %></td>
           </tr>
         <% end %>
       </table>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>

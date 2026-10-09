@@ -52,13 +52,59 @@ Spina::Pro.postgresql_dictionary  = "english"
 Spina::Pro.track_not_found_errors = true
 ```
 
-Spina Pro requires Spina `>= 2.15.0` and a PostgreSQL database (the search and
-several other features rely on PostgreSQL-specific functionality).
+Spina Pro requires Spina `>= 2.21` and a PostgreSQL database (the search and
+several other features rely on PostgreSQL-specific functionality). The admin
+views use Tailwind CSS 4 classes, which Spina 2.21 compiles; use Spina Pro
+0.13 with older Spina versions.
+
+## Forwarding messages
+
+When an inbox has a forward email, new messages are emailed to it. A message
+class can change where and how a message is forwarded:
+
+```ruby
+class ContactForm < Spina::Pro::Message
+  field :name, :string, index: true
+  field :email, :string
+  field :message, :text
+
+  # Recipient (default: the inbox's forward email)
+  def forward_target
+    "sales@example.com"
+  end
+
+  # Subject (default: the spina.pro.message_mailer.forward.subject translation)
+  def forward_subject
+    "New contact form message from #{name}"
+  end
+
+  # Extra mail headers
+  def forward_email_headers
+    {reply_to: email}
+  end
+end
+```
+
+If the app has a template named after the message class, such as
+`app/views/spina/pro/message_mailer/contact_form.html.erb`, it is used instead
+of the default forward template. `Spina::Pro::MessageMailer.forward(message,
+to: "someone@example.com")` sends a message to any address.
 
 ## Contributing
 
 Bug reports and pull requests are welcome. This project is released under the
 MIT license, so feel free to use it, fork it and build on top of it.
+
+### Running the tests
+
+The tests run against the dummy app in `spec/dummy` and need PostgreSQL. Point
+`DATABASE_URL` at a test database when your local user can't connect as-is:
+
+```bash
+export DATABASE_URL=postgres://postgres:postgres@localhost:5432/spina_pro_test
+(cd spec/dummy && RAILS_ENV=test bin/rails db:create db:schema:load)
+bundle exec rake test
+```
 
 ## License
 

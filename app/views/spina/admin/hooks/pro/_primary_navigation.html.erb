@@ -34,7 +34,7 @@
 <% end %>
 
 <li class="fixed bottom-20" data-controller="hotkeys" data-hotkeys="cmd+k, ctrl+k">
-  <%= button_to spina.admin_pro_search_path, class: "flex w-full items-center p-3 relative opacity-50 hover:opacity-100 transition-opacity", data: {turbo_frame: "modal", hotkeys_target: "button"} do %>
+  <%= button_to spina.admin_pro_search_path, class: "flex w-full cursor-pointer items-center p-3 relative opacity-50 hover:opacity-100 transition-opacity", data: {turbo_frame: "modal", hotkeys_target: "button"} do %>
     <%= heroicon('magnifying-glass', style: :mini, class: 'w-8 h-8 text-white md:mr-3') %>
   <% end %>
 </li>

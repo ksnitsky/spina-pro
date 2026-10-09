@@ -1,5 +1,11 @@
 en:
   activerecord:
+    errors:
+      models:
+        spina/rewrite_rule:
+          attributes:
+            new_path:
+              invalid: must start with / or http(s)://
     attributes:
       spina/pro/inbox:
         forward_email: Forward email
@@ -57,6 +63,7 @@ en:
         archived: Message archived
         archived_messages: Archived messages
         forwarded: Message forwarded to %{email}
+        not_forwarded: Message not forwarded, it has no recipient
         forward_now: Forward now
         unarchived: Message unarchived
         unarchive: Unarchive
