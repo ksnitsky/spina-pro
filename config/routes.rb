@@ -1,7 +1,7 @@
 Spina::Engine.routes.draw do
   
   # Pro Admin
-  namespace :admin do    
+  namespace :admin, path: Spina.config.backend_path do
     namespace :pro do
       # Search
       resource :search, controller: "search"
